@@ -2,6 +2,8 @@
 
 Internet Radio music connector for [DancingMusic](https://github.com/DancingMusic/DancingMusic), backed by [Radio Browser](https://www.radio-browser.info) — a community-maintained directory of 30,000+ free internet radio stations.
 
+🔗 **Live demo:** [https://dancingmusic.github.io/MusicConnect-Radio/](https://dancingmusic.github.io/MusicConnect-Radio/) — search + play table built from this connector's own `dist/index.js`.
+
 No API key, no auth, CORS-friendly.
 
 ## Use in DancingMusic
