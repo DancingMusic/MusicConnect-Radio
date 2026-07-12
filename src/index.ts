@@ -17,7 +17,7 @@ import type {
   MusicSearchResult,
   MusicStreamInfo,
   MusicTrack,
-} from "@dancingmusic/music-store";
+} from "@dancingmusic/music-connect";
 
 interface Station {
   stationuuid: string;
@@ -65,7 +65,11 @@ export class RadioConnector implements MusicConnector {
     id: "radio-browser",
     name: "Internet Radio",
     description: "Free internet radio stations from radio-browser.info",
-    version: "0.1.0",
+    familyId: "radio-browser",
+    variant: "anonymous",
+    authRequirement: "none",
+    supportedHosts: ["web", "desktop"],
+    version: "0.1.2",
     capabilities: ["search", "stream"],
   };
 
