@@ -4,6 +4,7 @@ var ENDPOINTS = [
   "https://de2.api.radio-browser.info",
   "https://fi1.api.radio-browser.info"
 ];
+var REQUEST_OPTIONS = { signal: AbortSignal.timeout(15e3) };
 function pickEndpoint() {
   return ENDPOINTS[Math.floor(Math.random() * ENDPOINTS.length)];
 }
@@ -33,7 +34,7 @@ var RadioConnector = class {
       variant: "anonymous",
       authRequirement: "none",
       supportedHosts: ["web", "desktop"],
-      version: "0.1.2",
+      version: "0.1.3",
       capabilities: ["search", "stream"]
     };
     this.base = pickEndpoint();
@@ -53,7 +54,7 @@ var RadioConnector = class {
       reverse: "true"
     });
     const url = `${this.base}/json/stations/search?${params}`;
-    const res = await fetch(url);
+    const res = await fetch(url, REQUEST_OPTIONS);
     if (!res.ok) throw new Error(`Radio Browser search failed: ${res.status}`);
     const stations = await res.json();
     return {
@@ -66,7 +67,7 @@ var RadioConnector = class {
   async getTrack(trackId) {
     const uuid = this.parseId(trackId);
     if (!uuid) return null;
-    const res = await fetch(`${this.base}/json/stations/byuuid/${uuid}`);
+    const res = await fetch(`${this.base}/json/stations/byuuid/${uuid}`, REQUEST_OPTIONS);
     if (!res.ok) return null;
     const arr = await res.json();
     return arr[0] ? stationToTrack(arr[0]) : null;
@@ -74,7 +75,7 @@ var RadioConnector = class {
   async getStreamUrl(trackId) {
     const uuid = this.parseId(trackId);
     if (!uuid) return null;
-    const res = await fetch(`${this.base}/json/stations/byuuid/${uuid}`);
+    const res = await fetch(`${this.base}/json/stations/byuuid/${uuid}`, REQUEST_OPTIONS);
     if (!res.ok) return null;
     const arr = await res.json();
     const s = arr[0];
