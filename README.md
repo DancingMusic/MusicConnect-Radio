@@ -38,7 +38,7 @@ https://cdn.jsdelivr.net/gh/DancingMusic/MusicConnect-Radio@v0.1.0/dist/index.js
 
 **Always-latest** (handy for dev, but jsdelivr caches `@main` for up to a week):
 ```
-https://cdn.jsdelivr.net/gh/DancingMusic/MusicConnect-Radio@main/dist/index.js
+https://cdn.jsdelivr.net/gh/DancingMusic/MusicConnect-Radio@v0.1.1/dist/index.js
 ```
 
 ### Releasing a new version
